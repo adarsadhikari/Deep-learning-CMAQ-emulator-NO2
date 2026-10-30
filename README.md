@@ -24,27 +24,7 @@ The study uses data from the **US Environmental Protection Agency (EPA) EQUATES 
 
 ## 🔍 Input Features
 
-The model incorporates **27 input channels** representing meteorological conditions, atmospheric emissions, and land-surface characteristics.
-
-### 1. Meteorological Features
-- Surface pressure
-- 2-m air temperature
-- Eastward and northward wind components
-- Solar radiation
-- Planetary boundary layer height (PBLH)
-- Relative humidity
-- Precipitation
-
-### 2. Emission Features
-- Nitric oxide (NO) emissions
-- Nitrogen dioxide (NO₂) emissions
-- Nitrous acid (HONO) emissions
-
-### 3. Land-Surface Features
-- Terrain elevation
-- Dominant land-use categories
-- Land-water mask
-- Urban fraction
+The model incorporates **Meteorological, emission and land surface based features** representing meteorological conditions, atmospheric emissions, and land-surface characteristics.
 
 ## ⚙️ Methodology
 
