@@ -79,6 +79,19 @@ Model performance was evaluated using the following statistical metrics:
 | **Pearson Correlation (R)** | Measures linear association between predictions and reference values |
 | **Index of Agreement (IOA)** | Evaluates agreement between predicted and reference concentrations |
 
+## 📈 Results and Visualizations
+
+This section presents the performance of the proposed deep learning emulator against CMAQ simulated data.
+
+### 1. Spatial Distribution of NO₂
+
+![CMAQ vs AI emulator NO₂ concentration](Fig4.png)
+
+### 2. CMAQ Reference vs. Model Prediction
+
+![Hexbin Plot of CMAQ vs. emulator NO₂](Fig3.png)
+
+
 ## 🎯 Project Objective
 
 The primary objective is to investigate whether a deep learning-based emulator can efficiently reproduce the spatial distribution and temporal variability of CMAQ-simulated surface NO₂ concentrations while maintaining predictive accuracy.
