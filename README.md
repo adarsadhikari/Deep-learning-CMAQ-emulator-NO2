@@ -1,2 +1,84 @@
-# Deep-learning-CMAQ-emulator-NO2
-This project explores the use of deep learning to emulate the Community Multiscale Air Quality (CMAQ) model for predicting daily mean surface nitrogen dioxide (NO₂)
+Deep Learning-Based Emulation of CMAQ Surface NO₂ Concentrations
+Project Overview
+This project explores deep learning as a computationally efficient alternative for reproducing the spatial and temporal patterns of chemical transport model (CTM) outputs. A ResNet-based convolutional neural network (CNN) is developed to predict daily mean surface nitrogen dioxide (NO₂) concentrations simulated by the Community Multiscale Air Quality (CMAQ) model.
+
+The model uses meteorological conditions, emission inventories, and land-surface characteristics to learn the complex relationships governing NO₂ distribution across space and time.
+
+Dataset Description
+The study uses data from the US Environmental Protection Agency (EPA) EQUATES dataset.
+
+
+Parameter	Description
+Data source	US EPA EQUATES
+Study area	Texas, USA
+Spatial resolution	12 km
+Study period	January 1–15, 2016
+Spatial domain	80 × 100 grid cells
+Prediction target	Daily mean surface NO₂ concentration
+Reference model	CMAQ
+Input Features
+The model incorporates 27 input channels representing meteorological conditions, atmospheric emissions, and land-surface characteristics.
+
+1. Meteorological Features
+Surface pressure
+2-m air temperature
+Eastward and northward wind components
+Solar radiation
+Planetary boundary layer height (PBLH)
+Relative humidity
+Precipitation
+2. Emission Features
+Nitric oxide (NO) emissions
+Nitrogen dioxide (NO₂) emissions
+Nitrous acid (HONO) emissions
+3. Land-Surface Features
+Terrain elevation
+Dominant land-use categories
+Land-water mask
+Urban fraction
+Methodology
+1. Data Preprocessing
+Multidimensional NetCDF datasets were processed and converted into Zarr format to enable efficient storage and data access.
+
+The preprocessing workflow included:
+
+Aggregation of hourly meteorological and emission variables into daily features.
+Derivation of eastward and northward wind components from wind speed and direction.
+One-hot encoding of categorical land-use variables.
+Log transformation of highly skewed variables.
+Z-score normalization of continuous input features.
+Preparation of spatially aligned input tensors and corresponding CMAQ-derived NO₂ concentration targets.
+2. Model Architecture
+A ResNet-based convolutional neural network was implemented to capture spatial dependencies and nonlinear relationships between environmental variables and NO₂ concentrations.
+
+The architecture consists of:
+
+Input and Feature Extraction Stem: Extracts initial spatial features from the 27-channel input tensor.
+Residual Blocks: Six residual blocks designed to learn hierarchical spatial representations.
+Dilated Convolutions: Dilation rates ranging from 1 to 4 to capture spatial dependencies at multiple scales without substantially increasing computational cost.
+Normalization: Group normalization for stable model training.
+Activation Function: Gaussian Error Linear Unit (GELU).
+Output Layer: A final 1 × 1 convolutional layer generates spatial predictions of daily mean surface NO₂ concentrations.
+3. Training and Validation Strategy
+The dataset was divided into temporally independent training and testing periods.
+
+Training: 10 days.
+Testing: 5 independent days.
+To evaluate spatial generalization and minimize spatial leakage, five-fold spatial cross-validation was performed using spatially separated grid-cell strips.
+
+A five-column spatial buffer was introduced between training and validation regions to reduce the influence of spatial autocorrelation and information leakage across adjacent grid cells.
+
+4. Model Evaluation
+Model performance was evaluated using the following statistical metrics:
+
+
+Metric	Description
+MAE	Mean Absolute Error
+RMSE	Root Mean Square Error
+Mean Error (ME)	Measures systematic prediction bias
+Pearson Correlation (R)	Measures linear association between predictions and reference values
+Index of Agreement (IOA)	Evaluates the agreement between predicted and reference concentrations
+Project Objective
+The primary objective is to investigate whether a deep learning-based emulator can efficiently reproduce the spatial distribution and temporal variability of CMAQ-simulated surface NO₂ concentrations while maintaining predictive accuracy.
+
+By learning from meteorological, emission, and land-surface information, the proposed framework aims to provide a computationally efficient approach for approximating chemical transport model outputs.
