@@ -83,11 +83,11 @@ Model performance was evaluated using the following statistical metrics:
 
 This section presents the performance of the proposed deep learning emulator against CMAQ simulated data.
 
-### 1. Spatial Distribution of NO₂
+### 1. CMAQ vs AI Emulator NO₂ Concentration
 
 ![CMAQ vs AI emulator NO₂ concentration](Fig4.png)
 
-### 2. CMAQ Reference vs. Model Prediction
+### 2. Hexbin Plot of CMAQ simulated vs. AI Emulator NO₂
 
 ![Hexbin Plot of CMAQ vs. emulator NO₂](Fig3.png)
 
